@@ -17,6 +17,7 @@ export class MyCard extends LitElement {
     this.title = "My card";
     this.description = "";
     this.img = "";
+    this.fancy = "";
   }
 
   static get styles() {
@@ -100,10 +101,14 @@ export class MyCard extends LitElement {
     
     <div id="details" class="details-content">
     <section class="card" id="card">
+      
       <p>${this.description}</p>
       <img src=${this.img}> 
+      <div></div>
       <a href="https://hax.psu.edu" target="blank">
-        <div></div>
+        <div>
+          <slot></slot>
+        </div>
       <button class="btn"> Visit HAX Website</button> 
       </a>
     </section>
@@ -116,7 +121,18 @@ export class MyCard extends LitElement {
       title: { type: String },
       description: { type: String },
       img: { type: String },
+      buttonTitle: {type: String, attribute: 'button-title'},
+      fancy: {type: Boolean, reflect: true},
     };
+  }
+  openChanged(e) {
+  console.log(e);
+  if (e.target.getAttribute('open') !== null) {
+    this.fancy = true;
+    }
+  else {
+    this.fancy = false;
+    }
   }
 }
 

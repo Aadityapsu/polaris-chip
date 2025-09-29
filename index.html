@@ -23,6 +23,15 @@
   <title>polaris-chip / my-card</title>
 </head>
 
+<h2>Controls</h2>
+<div class="control-wrapper">
+  <button class="duplicate">Clone Card</button>
+  <button class="title">Change title</button>
+  <button class="img-change">Change image</button>
+  <button id="bg-change">Change background</button>
+  <button id="delete">Delete card</button>
+</div>
+
 <body>
   <h1>polaris-chip</h1>
   <!-- this is going to do whatever the tag's defaults are -->
@@ -34,11 +43,16 @@
   <h1>my-card</h1>
   <my-card title="One Piece Card" description="This is one of my favourite anime" img="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/08/luffygear5dark.jpg?q=50&fit=crop&w=1100&h=618&dpr=1.5"></my-card>
   <my-card title="Cat Breed" description="My favorite breed is Siamese." img="https://www.purina.co.uk/sites/default/files/styles/ttt_image_original/public/2021-01/Siamese%201.webp?itok=CvhIfzd6"></my-card>
-  <my-card></my-card>
-  <my-card></my-card>
-  <my-card></my-card>
+  <my-card title="My Dream Car" description="Mitsubishi Lancer EVO VI Extreme" img="https://images.collectingcars.com/005941/13-08-2021-JBB-04.jpg?w=1263&fit=fillmax&crop=edges&auto=format,compress&cs=srgb&q=85"></my-card>
+  <my-card title="" description="" img=""></my-card>
+  <my-card title="" description="" img=""></my-card>
 
-
+  <details ?open="${this.fancy}">
+  <summary>Description</summary>
+  <div>
+    <slot>This is My Card of what all things is my favorite and my dreams.</slot>
+  </div>
+  </details>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
