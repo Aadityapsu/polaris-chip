@@ -18,6 +18,13 @@ export class MyCard extends LitElement {
     this.description = "";
     this.img = "";
     this.fancy = "";
+    this.fancy = false;
+  }
+
+  static get properties() {
+  return {
+    fancy: { type: Boolean, reflect: true }
+    }
   }
 
   static get styles() {
@@ -88,13 +95,49 @@ export class MyCard extends LitElement {
     border-radius: 4px;
   }
 
+  :host([fancy]) {
+  display: block;
+  background-color: pink;
+  border: 2px solid fuchsia;
+  box-shadow: 10px 5px 5px red;
+}
+
+  details summary {
+    text-align: left;
+    font-size: 20px;
+    padding: 8px 0;
+  }
+
+  details[open] summary {
+    font-weight: bold;
+  }
+  
+  details div {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    height: 70px;
+    overflow: auto;
+  }
+
     `;
   }
+
+  openChanged(e) {
+  console.log(e);
+  if (e.target.getAttribute('open') !== null) {
+    this.fancy = true;
+  }
+  else {
+    this.fancy = false;
+  }
+}
 
   render() { 
     return html`
     <div class="btn-wrapper">
     <h2>${this.title}</h2>
+    <details ?open="${this.fancy}" @toggle="${this.openChanged}"></details>
 
   
   <button id="detailsbtn" class="button">Details</button>
@@ -125,15 +168,7 @@ export class MyCard extends LitElement {
       fancy: {type: Boolean, reflect: true},
     };
   }
-  openChanged(e) {
-  console.log(e);
-  if (e.target.getAttribute('open') !== null) {
-    this.fancy = true;
-    }
-  else {
-    this.fancy = false;
-    }
-  }
+  
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
